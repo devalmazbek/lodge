@@ -197,8 +197,8 @@ body {
 
 .shopping__cart {
     display: none;
-    position: absolute;
-    top: 80px;
+    position: fixed;
+    top: -50px;
     right: 10px;
     width: 300px;
     padding: 15px;

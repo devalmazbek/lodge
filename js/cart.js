@@ -5,8 +5,13 @@ const shoppingBlock = document.getElementById('cart');
 const cartItems = document.querySelector('.cart__items');
 const btnAddToCart = document.querySelectorAll('.add__cart');
 const allProduct = document.getElementById('all-product');
+const totalPrice = document.getElementById('total-price');
 
 const product = [];
+
+let id = 0;
+
+
 
 const openShoppingCart = function() {
     shoppingBlock.classList.toggle('active');
@@ -20,31 +25,58 @@ const showProductInCart = (product) => {
     product.forEach(item => {
         
         const tempale = `
-             <div class="cart__item flex">
+             <div class="cart__item flex" id="${item.id}">
                     <h4 class="cart__item__title">${item.productTitle}</h4>
                     <img class="cart__item__img" src="${item.productImage}" alt="">
                     <p class="cart__item__price">${item.productPrice}</p>
+                    <button id="remove">remove</button>
             </div>
         `;
-        console.log(tempale);
+        // console.log(tempale);
 
         cartItems.insertAdjacentHTML(position, tempale);
     });
     allProduct.textContent = product.length;
 }
 
+
+const countTotalPrice = () => {
+    let allSum = 0;
+
+    const items = document.querySelectorAll('.cart__item__price');
+    items.forEach(item => {
+        allSum += +item.textContent;
+    })
+    return allSum;
+}
+
+const removeProduct = (e) => {
+    let sum = 0;
+    const parent = e.target.parentElement;
+    const removeItem = product.splice(index.id, 1);
+    parent.remove();
+    totalPrice.textContent = countTotalPrice();
+    allProduct.textContent = product.length;
+}
+
 const addProductToCart = (event) => {
     
-    // let id = 0;
+    id++;
     const parent = event.target.parentElement.parentElement
     const productTitle = parent.children[0].textContent;
     const productImage = parent.children[1].src;
     const productPrice = parent.children[2].children[0].children[1].textContent;
-    product.push({productTitle, productImage, productPrice});
+    product.push({id, productTitle, productImage, productPrice});
     
     showProductInCart(product);
-
+    // console.log(product);
+    totalPrice.textContent = countTotalPrice();
     
+    
+    // remove item
+
+    const btnRemove = document.querySelectorAll('.cart__item > #remove');
+    btnRemove.forEach(item => {item.addEventListener('click', removeProduct)});
 }
 
 
