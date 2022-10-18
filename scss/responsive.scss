@@ -1,0 +1,40 @@
+@media (max-width: 996px) {
+    .menu__icon {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .about {
+        justify-content: center !important;
+    }
+
+    .about__img {
+        justify-self: center;
+    }
+}
+
+
+@media (max-width: 756px) {
+    .header__slider__button button {
+        width: 100px;
+        font-size: 0.8rem;
+        margin-right: 0;
+    }
+
+    .header__slider__button span {
+        margin-left: 25px;
+    }
+
+    .best__price__item {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .jewellery {
+        justify-content: center !important;
+    }
+}
